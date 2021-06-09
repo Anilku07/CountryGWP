@@ -30,7 +30,8 @@ namespace CountryGWP.Service
                     lines.Add(line);
                 }
             }
-            foreach (var line in lines)
+
+            Parallel.ForEach(lines, line =>
             {
                 var values = line.Split(',');
                 DataModel dataModel = new DataModel()
@@ -64,7 +65,43 @@ namespace CountryGWP.Service
 
                 }
                 listA.Add(dataModel);
-            }
+            });
+
+            //foreach (var line in lines)
+            //{
+            //    var values = line.Split(',');
+            //    DataModel dataModel = new DataModel()
+            //    {
+            //        country = values[0],
+            //        variableId = values[1],
+            //        variableName = values[2],
+            //        lineOfBusiness = values[3],
+            //        dataYear = new List<DataYear>()
+            //    };
+            //    int i = 0;
+            //    foreach (var item in values)
+            //    {
+            //        i++;
+            //        if (i > 3)
+            //        {
+            //            DataYear dataYear = new DataYear();
+            //            dataYear.Year = 2000 + i - 4;
+
+            //            try
+            //            {
+            //                dataYear.Value = Convert.ToDecimal(item);
+            //            }
+            //            catch (Exception)
+            //            {
+            //                dataYear.Value = null;
+            //            }
+            //            dataYear.Value = dataYear.Value == 0 ? null : dataYear.Value;
+            //            dataModel.dataYear.Add(dataYear);
+            //        }
+
+            //    }
+            //    listA.Add(dataModel);
+            //}
             return listA;
         }
 
