@@ -9,6 +9,6 @@ namespace CountryGWP.Data
         public string variableId { get; set; }
         public string variableName { get; set; }
         public string lineOfBusiness { get; set; }
-        public List<DataYear> dataYear { get; set; }
+        public IList<DataYear> dataYear { get; set; }
     }
 }

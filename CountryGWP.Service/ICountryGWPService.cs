@@ -6,5 +6,6 @@ namespace CountryGWP.Service
     public interface ICountryGWPService
     {
         //List<DataModel> LoadCSV();
+        decimal? GetAverageGWP(string country, string lineOfBusiness);
     }
 }

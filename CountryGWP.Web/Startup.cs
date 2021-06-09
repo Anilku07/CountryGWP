@@ -26,6 +26,8 @@ namespace CountryGWP.Web
         {
             services.AddSingleton<ICountryGWPService, CountryGWPService>();
             services.AddControllersWithViews();
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +46,18 @@ namespace CountryGWP.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.InjectStylesheet("/swagger/custom.css");
+                c.RoutePrefix = String.Empty;
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -52,7 +66,7 @@ namespace CountryGWP.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=CountryGWP}/{action=Index}/{id?}");
             });
         }
     }

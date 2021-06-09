@@ -8,25 +8,24 @@ using Microsoft.Extensions.Logging;
 using CountryGWP.Web.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Hosting;
+using CountryGWP.Service;
 
 namespace CountryGWP.Web.Controllers
 {
     public class CountryGWPController : Controller
     {
-        private readonly ILogger<CountryGWPController> _logger;
-        private IWebHostEnvironment _hostingEnvironment;
+        //private readonly ILogger<CountryGWPController> _logger;
+        //private ICountryGWPService _countrygwpservice;
 
-        public CountryGWPController(ILogger<CountryGWPController> logger,  IWebHostEnvironment hostingEnvironment)
-        {
-            _logger = logger;
-            _hostingEnvironment = hostingEnvironment;
-        }
+        //public CountryGWPController(ILogger<CountryGWPController> logger, ICountryGWPService countrygwpservice)
+        //{
+        //    _logger = logger;
+        //    _countrygwpservice = countrygwpservice;
+        //}
 
         public IActionResult Index()
         {
-            dynamic result = JsonConvert.DeserializeObject("{ 'Name': 'Jon Smith'}");
-            return Json(result);
-            //return View();
+            return View();
         }
 
         public IActionResult Privacy()
